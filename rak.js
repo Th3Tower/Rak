@@ -1,5 +1,4 @@
 'use strict'
-// Rak 3 :)
 const cfg = require('./config.json')
 const fs = require('fs')
 const path = require('path')
@@ -7,11 +6,8 @@ const path = require('path')
 /*
 * Require for discord.js with parameters for cache size and disable some events/everyone
 */
-
 let Discord = require('discord.js')
 const bot = new Discord.Client({
-  // shardId: process.argv[1],
-  // shardCount: process.argv[2],
   messageCacheMaxSize: 4048,
   messageCacheLifetime: 1680,
   messageSweepInterval: 2600,
@@ -36,29 +32,27 @@ let commands = {}
 /*
 * Check the modules files in handlers directory
 */
-let checkFile = (file, dir = '', subdir = '') => {
+let checkFile = (file, filePath = '') => {
   if (file.endsWith('.js')) {
-    commands[file.slice(0, -3)] = require(path.join(__dirname, '/handlers/', subdir, dir, file))
+    commands[file.slice(0, -3)] = require(path.join(__dirname, filePath, file))
     if (bot.DETAILED_LOGGING) console.log('Loaded ' + file)
   }
 }
 
 /*
-* Load the commands from handler directory
+* Recursive load all the dir and files in src folder
 */
-let loadCommands = () => {
-  let dirs = fs.readdirSync(path.join(__dirname, '/handlers/modules/'))
-  for (let dir of dirs) {
-    if (fs.statSync(path.join(__dirname, '/handlers/modules/', dir)).isDirectory()) {
-      let files = fs.readdirSync(path.join(__dirname, '/handlers/modules/', dir))
-      for (let file of files) checkFile(file, dir, 'modules')
+let recursiveLoad = (recursive, filePath = '') => {
+  let files = fs.readdirSync(path.join(__dirname, filePath, recursive))
+  for (let file of files) {
+    if (fs.statSync(path.join(__dirname, filePath, recursive, file)).isDirectory()) {
+      let finalPath = path.join(filePath, recursive)
+      recursiveLoad(file, finalPath)
     } else {
-      let files = fs.readdirSync(path.join(__dirname, '/handlers/'))
-      for (let file of files) checkFile(file)
+      let finalPath = path.join(filePath, recursive)
+      checkFile(file, finalPath)
     }
   }
-  console.log('All the ' + Object.keys(commands).length + ' Spears Loaded!')
-  // console.log('thats the process argv 1 = ' + process.argv[0])
 }
 
 /*
@@ -70,7 +64,7 @@ bot.on('ready', function () {
   bot.user.setPresence({ game: { name: 'r!help' }, status: 'online' })
     .then(console.log('status changed'))
     .catch(console.error)
-  loadCommands()
+  recursiveLoad('src')
 })
 
 /*
@@ -103,7 +97,7 @@ let checkCommand = (msg, isMention, command) => {
 * Handler all msg and commands
 */
 bot.on('message', msg => {
-  commands['main'].main(bot, msg)
+  // commands['main'].main(bot, msg)
   let command
   if (msg.content.startsWith('<@' + bot.user.id + '>') || msg.content.startsWith('<@!' + bot.user.id + '>')) {
     checkCommand(msg, true, command)

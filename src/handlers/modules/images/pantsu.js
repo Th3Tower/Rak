@@ -18,7 +18,7 @@ module.exports = {
       let random = Math.floor((Math.random() * pantsus.length))
       msg.channel.send({embed: {
         color: 6447003,
-        title: "Here's the pantsu delivery",
+        title: 'Here is the pantsu delivery',
         image: {
           url: `attachment://${pantsus[random]}`
         }

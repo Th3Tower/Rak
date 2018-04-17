@@ -2,7 +2,7 @@
 /node_modules/
 /resources/
 /handlers/tower/
-/core/tower.js
+/src/core/tower.js
 .*
 !.gitignore
 *.psd

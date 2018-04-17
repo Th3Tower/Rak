@@ -1,0 +1,19 @@
+{
+  "name": "rak",
+  "version": "1.0.0",
+  "description": "hey turtles",
+  "main": "rak.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "all": "0.0.0",
+    "crypto-price": "0.0.4",
+    "discord.js": "^11.3.0",
+    "forever": "^0.15.3",
+    "opusscript": "0.0.6",
+    "systeminformation": "^3.38.0"
+  }
+}

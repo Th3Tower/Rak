@@ -1,0 +1,12 @@
+/config.json
+/node_modules/
+/resources/
+/handlers/tower/
+/core/tower.js
+.*
+!.gitignore
+*.psd
+*.png
+*.jpg
+*.gif
+*.ico

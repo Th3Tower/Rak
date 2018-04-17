@@ -1,7 +1,7 @@
 /config.json
 /node_modules/
 /resources/
-/handlers/tower/
+/src/handlers/tower/
 /src/core/tower.js
 .*
 !.gitignore

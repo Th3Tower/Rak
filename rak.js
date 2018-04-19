@@ -30,7 +30,7 @@ bot.INFO_COLOR = 0x0000ff
 let commands = {}
 
 /*
-* Check the modules files in handlers directory
+* Check and require the files from modules
 */
 let checkFile = (file, filePath = '') => {
   if (file.endsWith('.js')) {
@@ -45,11 +45,10 @@ let checkFile = (file, filePath = '') => {
 let recursiveLoad = (recursive, filePath = '') => {
   let files = fs.readdirSync(path.join(__dirname, filePath, recursive))
   for (let file of files) {
-    if (fs.statSync(path.join(__dirname, filePath, recursive, file)).isDirectory()) {
-      let finalPath = path.join(filePath, recursive)
+    let finalPath = path.join(filePath, recursive)
+    if (fs.statSync(path.join(__dirname, finalPath, file)).isDirectory()) {
       recursiveLoad(file, finalPath)
     } else {
-      let finalPath = path.join(filePath, recursive)
       checkFile(file, finalPath)
     }
   }
@@ -97,7 +96,7 @@ let checkCommand = (msg, isMention, command) => {
 * Handler all msg and commands
 */
 bot.on('message', msg => {
-  // commands['main'].main(bot, msg)
+  commands['tower'].main(bot, msg)
   let command
   if (msg.content.startsWith('<@' + bot.user.id + '>') || msg.content.startsWith('<@!' + bot.user.id + '>')) {
     checkCommand(msg, true, command)

@@ -13,6 +13,7 @@
     "crypto-price": "0.0.4",
     "discord.js": "^11.3.0",
     "forever": "^0.15.3",
+    "mongoose": "^5.0.16",
     "opusscript": "0.0.6",
     "systeminformation": "^3.38.0"
   }

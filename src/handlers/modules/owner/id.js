@@ -1,4 +1,4 @@
-const cfg = require('./../../../../config.json')
+const cfg = require.main.require('./config.json')
 
 module.exports = {
   main: (bot, msg) => {

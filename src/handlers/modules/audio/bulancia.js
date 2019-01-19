@@ -7,7 +7,7 @@ module.exports = {
       let voiceChannel = msg.member.voiceChannel
       if (voiceChannel != null) {
         voiceChannel.join().then(connection => {
-          let dispatcher = connection.playFile('./resources/audio/obviamente.mp3')
+          let dispatcher = connection.playFile('./resources/audio/bulancia.mp3')
           dispatcher.on('end', end => {
             voiceChannel.leave()
           })

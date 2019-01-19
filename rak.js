@@ -55,6 +55,65 @@ let recursiveLoad = (recursive, filePath = '') => {
 }
 
 /*
+* Joining event
+*/
+
+bot.on('guildMemberAdd', member => {
+  setTimeout(() => {
+	let channel = member.guild.channels.get('401107512943837184')
+	if(channel != null) {
+	  channel.send({embed: {
+            color: 39423,
+	    author: {
+	      name: 'JOINING THE TOWER',
+	      icon_url: member.user.avatarURL
+	    },
+	    title: `Welcome, turtle ${member.user.username}!!`,
+            description: `<@${member.user.id}> ${member.user.tag}`,
+	    thumbnail: {
+	      url: member.user.avatarURL
+	    },
+	    timestamp: new Date(),
+	    footer: {
+	      text: `ID: ${member.id}`
+	    }
+          }
+	 }).then().catch(console.error)
+	}
+  }, 1000)
+});
+
+/*
+* Leave event
+*/
+
+bot.on('guildMemberRemove', member => {
+  setTimeout(() => {
+	let channel = member.guild.channels.get('401107512943837184')
+	if(channel != null) {
+	  let reason = 'I guess you guys are so boring \nthat this turtle never coming back again'
+	  channel.send({embed: {
+            color: 16711680,
+	    author: {
+	      name: 'LEAVING THE TOWER',
+	      icon_url: member.user.avatarURL
+	    },
+	    title: `Farewell, stupid turtle ${member.user.username}`,
+	    description: `<@${member.user.id}> ${member.user.tag}`,
+	    thumbnail: {
+	      url: member.user.avatarURL
+	    },
+	    timestamp: new Date(),
+	    footer: {
+	      text: `ID: ${member.id}`
+	    }
+          }
+	 }).then().catch(console.error)
+	}
+  }, 1000)
+});
+
+/*
 * Console msg for a sucessfully conection
 */
 bot.on('ready', function () {

@@ -13,12 +13,12 @@
     "cleverbot-node": "^0.3.11",
     "clevertype": "^2.0.4",
     "crypto-price": "0.0.4",
-    "discord.js": "^11.3.0",
+    "discord.js": "^11.4.2",
     "forever": "^0.15.3",
     "google-assistant": "^0.5.2",
     "google-auth-library": "^1.6.1",
-    "mongoose": "^5.0.16",
+    "mongoose": "^5.2.9",
     "opusscript": "0.0.6",
-    "systeminformation": "^3.38.0"
+    "systeminformation": "^3.44.0"
   }
 }

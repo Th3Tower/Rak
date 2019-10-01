@@ -35,7 +35,8 @@ module.exports = {
       let random = Math.floor((Math.random() * maguos.length))
       msg.channel.send({embed: {
         color: 6447003,
-        title: 'O @Maguo é immmplacáveuu!!',
+        title: 'O Maguo é immmplacáveuu!!',
+        description: `<@140260491359551490>`,
         image: {
           url: `attachment://${maguos[random]}`
         }
